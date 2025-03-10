@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">Home</a>
+      <a href="/signup">Sign-up</a>
+      <a href="/login">Login</a>
+    </div>
+    <div class="formContainer">
+      <form action="/login" method="post">
+        <div>
+          <label for="username">Username: </label>
+          <input type="text" name="username" id="username" required />
+        </div>
+        <div>
+          <label for="password">Password: </label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>

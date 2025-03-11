@@ -12,6 +12,13 @@
       <a href="/signup">Sign-up</a>
       <a href="/login">Login</a>
     </div>
+    <% if (locals.errors) {%>
+    <ul>
+      <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+    <% } %>
     <div class="formContainer">
       <form action="/signup" method="post">
         <div>

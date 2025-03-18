@@ -14,12 +14,8 @@
     </div>
     <% if (message) { %>
     <h1><%= message %></h1>
-    <% } %> <% if (locals.errors) {%>
-    <ul>
-      <% errors.forEach(function(error) { %>
-      <li><%= error.msg %></li>
-      <% }); %>
-    </ul>
+    <% } %> <% if (error) { %>
+    <h1><%= error %></h1>
     <% } %>
     <div class="formContainer">
       <form action="/login" method="post">
@@ -36,6 +32,13 @@
     </div>
     <script>
       if (window.location.search.includes("account=created")) {
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
+      }
+      if (window.location.search.includes("error=invalid")) {
         window.history.replaceState(
           {},
           document.title,

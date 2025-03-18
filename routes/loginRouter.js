@@ -7,7 +7,9 @@ loginRouter.get("/", (req, res) => {
     req.query.account === "created"
       ? "Account successfully created! You can now log in!"
       : "";
-  res.render("login", { message });
+  const error =
+    req.query.error === "invalid" ? "Invalid username or password." : "";
+  res.render("login", { message, error });
 });
 
 loginRouter.post(

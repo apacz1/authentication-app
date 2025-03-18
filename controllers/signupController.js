@@ -21,8 +21,8 @@ const validateUser = [
     .isAlphanumeric()
     .withMessage("Username must contain only letters and numbers.")
     .bail()
-    .isLength({ min: 6, max: 16 })
-    .withMessage("Username needs to be between 6 and 16 characters.")
+    .isLength({ min: 4, max: 16 })
+    .withMessage("Username needs to be between 4 and 16 characters.")
     .bail()
     .custom(async (value) => {
       const user = await db.findUsername(value);

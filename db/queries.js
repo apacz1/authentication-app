@@ -47,4 +47,19 @@ async function findUsername(username) {
   }
 }
 
-module.exports = { addUser, findUsername };
+async function findUserById(id) {
+  try {
+    const query = `
+            SELECT * FROM users WHERE id = $1;
+        `;
+    const values = [id];
+
+    const result = await pool.query(query, values);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error finding user:", error.message);
+    throw error;
+  }
+}
+
+module.exports = { addUser, findUsername, findUserById };

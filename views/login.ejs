@@ -14,6 +14,12 @@
     </div>
     <% if (message) { %>
     <h1><%= message %></h1>
+    <% } %> <% if (locals.errors) {%>
+    <ul>
+      <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
     <% } %>
     <div class="formContainer">
       <form action="/login" method="post">

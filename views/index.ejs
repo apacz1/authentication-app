@@ -9,8 +9,13 @@
   <body>
     <div class="navbar">
       <a href="/">Home</a>
+      <% if (user) { %>
+      <a href="/premium">Premium</a>
+      <a href="/logout">Logout</a>
+      <% } else { %>
       <a href="/signup">Sign-up</a>
       <a href="/login">Login</a>
+      <% } %>
     </div>
   </body>
 </html>

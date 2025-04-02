@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">Home</a>
+      <a href="/premium">Premium</a>
+      <a href="/logout">Logout</a>
+    </div>
+    <% if (message) { %>
+    <h3><%= message %></h3>
+    <% } else { %>
+    <h3>Your current membership status: <%= user.membership_status %></h3>
+    <% } %>
+    <div class="formContainer">
+      <form action="/premium" method="post">
+        <div>
+          <label for="premium">Secret password: </label>
+          <input type="password" name="premium" id="premium" required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

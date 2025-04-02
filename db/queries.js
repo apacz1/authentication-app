@@ -1,5 +1,6 @@
 const pool = require("./pool");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
 async function addUser(
   firstName,
@@ -62,4 +63,35 @@ async function findUserById(id) {
   }
 }
 
-module.exports = { addUser, findUsername, findUserById };
+async function updateMembership(userId, secretPassword) {
+  const secretPasswords = {
+    admin: process.env.SECRET_ADMIN,
+    member: process.env.SECRET_MEMBER,
+  };
+
+  let newStatus = null;
+  if (secretPassword === secretPasswords.admin) {
+    newStatus = "admin";
+  } else if (secretPassword === secretPasswords.member) {
+    newStatus = "member";
+  } else {
+    return { success: false, message: "Incorrect secret password." };
+  }
+
+  const query = `UPDATE users SET membership_status = $1 WHERE id = $2 RETURNING *;`;
+
+  try {
+    const result = await pool.query(query, [newStatus, userId]);
+
+    if (result.rowCount === 0) {
+      return { success: false, message: "User not found." };
+    }
+
+    return { success: true, message: `Membership updated to ${newStatus}.` };
+  } catch (error) {
+    console.error("Error updating membership:", error.message);
+    return { success: false, message: "Database error." };
+  }
+}
+
+module.exports = { addUser, findUsername, findUserById, updateMembership };

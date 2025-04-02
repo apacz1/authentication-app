@@ -9,7 +9,7 @@ loginRouter.get("/", (req, res) => {
       : "";
   const error =
     req.query.error === "invalid" ? "Invalid username or password." : "";
-  res.render("login", { message, error });
+  res.render("login", { message, error, user: req.user });
 });
 
 loginRouter.post(

@@ -7,6 +7,7 @@ const passport = require("./controllers/passport");
 const indexRouter = require("./routes/indexRouter");
 const signupRouter = require("./routes/signupRouter");
 const loginRouter = require("./routes/loginRouter");
+const premiumRouter = require("./routes/premiumRouter");
 
 const app = express();
 const port = 3000;
@@ -28,6 +29,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
+app.use("/premium", premiumRouter);
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

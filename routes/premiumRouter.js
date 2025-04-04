@@ -5,6 +5,9 @@ const premiumRouter = Router();
 premiumRouter.get("/", (req, res) => {
   const user = req.user;
   const message = req.session.message || null;
+  if (!user) {
+    return res.redirect("/login");
+  }
 
   res.render("premium", {
     user: user,

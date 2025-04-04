@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">Home</a>
+      <% if (user) { %>
+      <a href="/premium">Premium</a>
+      <a href="/logout">Logout</a>
+      <% } else { %>
+      <a href="/signup">Sign-up</a>
+      <a href="/login">Login</a>
+      <% } %>
+    </div>
+    <div class="formContainer">
+      <form action="/message" method="post">
+        <div class="textareaContainer">
+        <label for="message">Message content</label>
+        <textarea name="message" id="message" maxlength="255" placeholder="Enter your message here..." required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      </form>
+    </div>
+  </body>
+</html>

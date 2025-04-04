@@ -8,6 +8,7 @@ const indexRouter = require("./routes/indexRouter");
 const signupRouter = require("./routes/signupRouter");
 const loginRouter = require("./routes/loginRouter");
 const premiumRouter = require("./routes/premiumRouter");
+const messageRouter = require("./routes/messageRouter");
 
 const app = express();
 const port = 3000;
@@ -30,6 +31,7 @@ app.use("/", indexRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/premium", premiumRouter);
+app.use("/message", messageRouter);
 app.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {

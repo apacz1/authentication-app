@@ -94,4 +94,25 @@ async function updateMembership(userId, secretPassword) {
   }
 }
 
-module.exports = { addUser, findUsername, findUserById, updateMembership };
+async function insertMessage(userId, title, content) {
+  const query = `
+    INSERT INTO messages (user_id, title, content)
+    VALUES ($1, $2, $3) RETURNING *;
+  `;
+
+  try {
+    const result = await pool.query(query, [userId, title, content]);
+    console.log("Message inserted:", result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error inserting message:", error);
+  }
+}
+
+module.exports = {
+  addUser,
+  findUsername,
+  findUserById,
+  updateMembership,
+  insertMessage,
+};

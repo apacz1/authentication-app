@@ -17,5 +17,10 @@
       <a href="/login">Login</a>
       <% } %>
     </div>
+    <% if (user) { %>
+    <a href="/message" class="newMessage">
+      <button>New Message</button>
+    </a>
+    <% } %>
   </body>
 </html>

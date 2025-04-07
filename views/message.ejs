@@ -19,6 +19,8 @@
     </div>
     <div class="formContainer">
       <form action="/message" method="post">
+        <label for="msgTitle">Message title</label>
+        <input type="text" name="msgTitle" id="msgTitle" maxlength="50" required />
         <div class="textareaContainer">
         <label for="message">Message content</label>
         <textarea name="message" id="message" maxlength="255" placeholder="Enter your message here..." required></textarea>

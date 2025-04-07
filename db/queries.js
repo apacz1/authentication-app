@@ -1,3 +1,4 @@
+const { get } = require("../routes/indexRouter");
 const pool = require("./pool");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
@@ -109,10 +110,23 @@ async function insertMessage(userId, title, content) {
   }
 }
 
+async function getAllMessages() {
+  const query = `SELECT * FROM messages ORDER BY timestamp DESC;`;
+
+  try {
+    const result = await pool.query(query);
+    console.log("Retrieved messages:", result.rows);
+    return result.rows;
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
+}
+
 module.exports = {
   addUser,
   findUsername,
   findUserById,
   updateMembership,
   insertMessage,
+  getAllMessages,
 };

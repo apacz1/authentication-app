@@ -110,7 +110,17 @@ async function insertMessage(userId, title, content) {
 }
 
 async function getAllMessages() {
-  const query = `SELECT * FROM messages ORDER BY timestamp DESC;`;
+  const query = `
+    SELECT 
+      m.id, 
+      u.username, 
+      m.title, 
+      m.content, 
+      TO_CHAR(m.timestamp, 'HH24:MI DD:MM:YYYY') AS formatted_date 
+    FROM messages m
+    JOIN users u ON m.user_id = u.id
+    ORDER BY m.timestamp DESC;
+  `;
 
   try {
     const result = await pool.query(query);

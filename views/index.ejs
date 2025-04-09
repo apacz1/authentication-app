@@ -22,5 +22,25 @@
       <button>New Message</button>
     </a>
     <% } %>
+    <div class="messagesContainer">
+      <% messages.forEach((message) => { %>
+      <div class="messageCard">
+        <h2><%= message.title %></h2>
+        <p class="content"><%= message.content %></p>
+        <div class="msgFooter">
+          <p>
+            <strong>at </strong> <% if (!user || user.membership_status ===
+            "guest") { %> --- <% } else { %> <%= message.formatted_date %> <% }
+            %>
+          </p>
+          <p>
+            <strong>by </strong>
+            <% if (!user || user.membership_status === "guest") { %> --- <% }
+            else { %> <%= message.username %> <% } %>
+          </p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
   </body>
 </html>

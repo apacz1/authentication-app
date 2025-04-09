@@ -110,3 +110,38 @@ h3 {
   top: 5vh;
   left: 5vw;
 }
+
+.messagesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5vh 0;
+}
+
+.messageCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  background-color: #212f3c;
+  color: #eeeeee;
+}
+
+.messageCard > * {
+  padding: 0 5vw;
+}
+
+.messageCard h2,
+.content {
+  padding-bottom: 1vh;
+}
+
+.msgFooter {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}

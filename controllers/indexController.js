@@ -1,4 +1,3 @@
-delete require.cache[require.resolve("../db/queries")];
 const db = require("../db/queries");
 console.log(db);
 

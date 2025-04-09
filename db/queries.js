@@ -1,4 +1,3 @@
-const { get } = require("../routes/indexRouter");
 const pool = require("./pool");
 const bcrypt = require("bcrypt");
 require("dotenv").config();

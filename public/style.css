@@ -145,3 +145,11 @@ h3 {
   flex-direction: column;
   align-self: flex-end;
 }
+
+.delMessage {
+  margin-left: auto;
+}
+
+.delMessage button {
+  border: 1px solid #eeeeee;
+}

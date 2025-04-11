@@ -116,7 +116,7 @@ async function getAllMessages() {
       u.username, 
       m.title, 
       m.content, 
-      TO_CHAR(m.timestamp, 'HH24:MI DD:MM:YYYY') AS formatted_date 
+      TO_CHAR(m.timestamp, 'HH24:MI DD.MM.YYYY') AS formatted_date 
     FROM messages m
     JOIN users u ON m.user_id = u.id
     ORDER BY m.timestamp DESC;
@@ -124,10 +124,28 @@ async function getAllMessages() {
 
   try {
     const result = await pool.query(query);
-    console.log("Retrieved messages:", result.rows);
+    //console.log("Retrieved messages:", result.rows);
     return result.rows;
   } catch (error) {
     console.error("Error fetching messages:", error);
+  }
+}
+
+async function deleteMessageById(messageId) {
+  const query = `DELETE FROM messages WHERE id = $1 RETURNING *;`;
+
+  try {
+    const result = await pool.query(query, [messageId]);
+
+    if (result.rowCount === 0) {
+      console.log(`No message found with id: ${messageId}`);
+      return null;
+    }
+
+    console.log(`Deleted message:`, result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error deleting message:", error);
   }
 }
 
@@ -138,4 +156,5 @@ module.exports = {
   updateMembership,
   insertMessage,
   getAllMessages,
+  deleteMessageById,
 };

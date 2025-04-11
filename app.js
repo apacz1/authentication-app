@@ -9,6 +9,7 @@ const signupRouter = require("./routes/signupRouter");
 const loginRouter = require("./routes/loginRouter");
 const premiumRouter = require("./routes/premiumRouter");
 const messageRouter = require("./routes/messageRouter");
+const deleteRouter = require("./routes/deleteRouter");
 
 const app = express();
 const port = 3000;
@@ -40,6 +41,7 @@ app.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+app.use("/delete", deleteRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
